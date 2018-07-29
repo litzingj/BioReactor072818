@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BioReactor072818.TodoItemPage">
+    <StackLayout>
+        <Label Text="Task"/>
+        <Entry Text="{Binding Name}"/>
+        <!--Binding context will be passed to this-->
+        <Label Text="Notes"/>
+        <Entry Text="{Binding Notes}"/>
+        <Label Text="Done"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height=".5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width=".5*"/>
+            </Grid.ColumnDefinitions>
+            <Switch IsToggled="{Binding Done}" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0"/>
+            <Button Text="Save" Clicked="OnSaveClicked" Grid.Column="0" Grid.Row="1"/>
+            <Button Text="Delete" Clicked="OnDeleteClicked" Grid.Column="1" Grid.Row="1"/>
+            <Button Text="Cancel" Clicked="OnCancelClicked" Grid.Column="1" Grid.Row="0"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

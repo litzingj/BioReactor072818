@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,14 +8,24 @@ namespace BioReactor072818
 {
 	public partial class App : Application
 	{
+
+
+
 		public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+            //Navigation page allows you to use Navigation.PushAsync() and .PopAsync() to navigate
+			MainPage = new NavigationPage(new MainPage());
+            
 		}
 
-		protected override void OnStart ()
+        /// <summary>
+        /// This keeps track of the prerun checkoff list index that you're at
+        /// </summary>
+        public int ResumeAtTodoId { get; set; }
+
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}

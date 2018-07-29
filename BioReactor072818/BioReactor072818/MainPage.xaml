@@ -2,13 +2,63 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BioReactor072818"
+             xmlns:ctrls="clr-namespace:BioReactor072818.Controls"
              x:Class="BioReactor072818.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".9*"/>
+                <RowDefinition Height=".4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".9*"/>
+                <ColumnDefinition Width=".9*"/>
+                <ColumnDefinition Width=".9*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BlueContainer"
+                    BackgroundColor="White"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Image="BMES_VESSEL_blue_xsmall.png"
+                    Pressed="Container_One_Pressed">
+            </Button>
+            <Button
+                x:Name="RedContainer"
+                BackgroundColor="White"
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Image="BMES_VESSEL_red_xsmall.png"
+                Pressed="Container_Two_Pressed">
+            </Button>
+            <Button
+                x:Name="GreenContainer"
+                BackgroundColor="White"
+                Grid.Row="0"
+                Grid.Column="2"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Image="BMES_VESSEL_green_xsmall.png"
+                Pressed="Container_Three_Pressed">
+            </Button>
+            <Button x:Name="AllVessels"
+                    BackgroundColor="Accent"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="100"
+                    HeightRequest="60"
+                    Pressed="All_Vessels"
+                    Text="Select All">
+                
+            </Button>
+        </Grid>
+
     </StackLayout>
 
 </ContentPage>
