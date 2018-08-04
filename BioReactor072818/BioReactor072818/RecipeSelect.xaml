@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BioReactor072818.PrerunCheckoff">
+             x:Class="BioReactor072818.RecipeSelect">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Home" Clicked="OnHomeClicked">
             <ToolbarItem.Icon>
@@ -10,7 +10,7 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-        <ToolbarItem Text="+" Clicked="OnItemAdd">
+        <ToolbarItem Text="+" Clicked="OnRecipeAdd">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="Android" Value="baseline_add_white_24"/>
@@ -18,13 +18,13 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    <ListView x:Name="listView" Margin="20" ItemSelected="OnListItemSelected">
+    <ListView x:Name="RecipeList" Margin="20" ItemSelected="OnRecipeSelected">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"/>
-                        <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding Done}"/>
+                        <Label Text="{Binding Descript}" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
