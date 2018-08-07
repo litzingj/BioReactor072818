@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BioReactor072818.RecipePage"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Clicked="OnNextClicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="baseline_arrow_forward_white_24"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.167*"/>
+                    <RowDefinition Height="0.167*"/>
+                    <RowDefinition Height="0.167*"/>
+                    <RowDefinition Height="0.167*"/>
+                    <RowDefinition Height="0.167*"/>
+                    <RowDefinition Height="0.167*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="0.7*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Title" Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand" />
+                <Entry Text="{Binding Name}" Grid.Column="0" Grid.Row="1"/>
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.7*"/>
+                    </Grid.ColumnDefinitions>
+                    <DatePicker Date="{x:Static sys:DateTime.Today}" 
+                            DateSelected="OnDateSelected"
+                            Grid.Column="0"/>
+                    <TimePicker Time="{x:Static sys:DateTime.Now}"
+                                Grid.Column="1"/>
+                </Grid>
+                <Label Text="Details" HorizontalOptions="StartAndExpand"
+                       Grid.Column="0" Grid.Row="4"/>
+                <Entry Text="{Binding Descript}" 
+                       Grid.Column="0" Grid.Row="5"/>
+                <ListView x:Name="Chemicals" Margin="20" ItemSelected="OnChemSelected" 
+                          Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Chemicals}" HorizontalOptions="StartAndExpand"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="Add Chemical" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Pressed="OnAddChemical"/>
+                <ListView x:Name="Additives" Margin="20" ItemSelected="OnAddSelected" 
+                          Grid.Row="3" Grid.RowSpan="2" Grid.Column="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Additives}" HorizontalOptions="StartAndExpand"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="Add Additive" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" Pressed="OnAddAdditive"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

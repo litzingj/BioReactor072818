@@ -27,7 +27,7 @@ namespace BioReactor072818
             //Asynchronously pop this page off the top of the views stack
             await Navigation.PopAsync();
         }
-
+         
         async void OnSaveClicked(object sender, EventArgs e)
         {
             //Get the todoItem
