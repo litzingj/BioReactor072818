@@ -16,8 +16,8 @@ namespace BioReactor072818
 			InitializeComponent();
 
             //Navigation page allows you to use Navigation.PushAsync() and .PopAsync() to navigate
-			MainPage = new NavigationPage(new MainPage());
-            
+            //MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new RecipePage());
 		}
 
         /// <summary>

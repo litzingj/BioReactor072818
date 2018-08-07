@@ -2,6 +2,7 @@
 using SQLite;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace BioReactor072818
 {
@@ -48,7 +49,22 @@ namespace BioReactor072818
         {
             return database.DeleteAsync(item);
         }
-        
 
+        public async Task<List<TableName>> GetTableNamesAsync()
+        {
+            string queryString = $"SELECT name FROM sqlite_master WHERE type = 'table'";
+            return await database.QueryAsync<TableName>(queryString).ConfigureAwait(false);
+           
+        }
+
+        public async void DeleteData()
+        {
+            List<TodoItem> items = await GetItemsNotDoneAsync();
+            foreach(TodoItem item in items)
+            {
+                await DeleteItemAsync(item);
+            }
+        }
     }
+
 }
