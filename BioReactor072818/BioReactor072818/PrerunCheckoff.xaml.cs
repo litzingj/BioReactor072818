@@ -29,12 +29,12 @@ namespace BioReactor072818
         /// </summary>
         async void createTasks()
         {
-        
+
             TodoItem td = new TodoItem
             {
-                Name="Check/Secure Probes/Ports",
-                Notes="",
-                Done=false,
+                Name = "Check/Secure Probes/Ports",
+                Notes = "",
+                Done = false,
             };
             await Database.SaveItemAsync(td);
             td = new TodoItem
@@ -75,10 +75,16 @@ namespace BioReactor072818
         }
 
 
-        /// <summary>
-        /// Pop all existing pages off the stack
-        /// </summary>
-        async void OnHomeClicked()
+
+
+      //namespace System.Windows.Forms.MessageBox.Show("Test");
+
+
+
+    /// <summary>
+    /// Pop all existing pages off the stack
+    /// </summary>
+    async void OnHomeClicked()
         {
             //Go to the base page  
             await Navigation.PopToRootAsync();
@@ -110,7 +116,7 @@ namespace BioReactor072818
 
         /// <summary>
         /// This adds a new item. If the plus is selected, a new item is created
-        /// and passed tot he TodoItemPage
+        /// and passed to the TodoItemPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
