@@ -8,7 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Diagnostics;
 using SQLite;
-
+using BioReactor072818.Data;
+using BioReactor072818.Models;
 
 namespace BioReactor072818
 {

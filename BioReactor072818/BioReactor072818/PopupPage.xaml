@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="BioReactor072818.PopupPage">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20,20,20,20">
+        <Frame CornerRadius="10" Padding="0">
+            <StackLayout BackgroundColor="White" Padding="10,10,10,10">
+                <Label x:Name="DialogTitle" FontSize="Large" Text="New Item" HorizontalOptions="StartAndExpand" VerticalOptions="Start"/>
+                <Entry x:Name="ItemName" Text="{Binding Name}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Continue" Grid.Column="1" Pressed="OnOk" FontSize="Default"/>
+                    <Button Text="Cancel" Grid.Column="0" Pressed="OnCancel" FontSize="Default"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BioReactor072818.Data;
+using BioReactor072818.Models;
 
 namespace BioReactor072818
 {

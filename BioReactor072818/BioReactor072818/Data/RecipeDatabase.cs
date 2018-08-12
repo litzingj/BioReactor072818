@@ -1,40 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using SQLite;
 using Xamarin.Forms;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using BioReactor072818.Models;
+using System.Threading.Tasks;
 
 namespace BioReactor072818.Data
 {
-	public class TodoItemDatabase
+	public class RecipeDatabase
 	{
-
-      
         readonly SQLiteAsyncConnection database;
-
-        public TodoItemDatabase(string dbPath)
-        {
+        
+		public RecipeDatabase (string dbPath)
+		{
             database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<TodoItem>().Wait();
-        }
+            database.CreateTableAsync<Recipe>().Wait();
+		}
 
-        public Task<List<TodoItem>> GetItemsAsync()
+        public Task<List<Recipe>> GetItemsAsync()
         {
-            return database.Table<TodoItem>().ToListAsync();
+            return database.Table<Recipe>().ToListAsync();
         }
 
-        public Task<List<TodoItem>> GetItemsNotDoneAsync()
+        public Task<List<Recipe>> GetItemsNotDoneAsync()
         {
-            return database.QueryAsync<TodoItem>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+            return database.QueryAsync<Recipe>("SELECT * FROM [Recipe]");
+            //return database.QueryAsync<Recipe>("SELECT * FROM [Recipe] WHERE [Done] = 0");
         }
 
-        public Task<TodoItem> GetItemAsync(int id)
+        public Task<Recipe> GetItemAsync(int id)
         {
-            return database.Table<TodoItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return database.Table<Recipe>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(TodoItem item)
+        public Task<int> SaveItemAsync(Recipe item)
         {
             if (item.ID != 0)
             {
@@ -46,7 +47,7 @@ namespace BioReactor072818.Data
             }
         }
 
-        public Task<int> DeleteItemAsync(TodoItem item)
+        public Task<int> DeleteItemAsync(Recipe item)
         {
             return database.DeleteAsync(item);
         }
@@ -55,17 +56,16 @@ namespace BioReactor072818.Data
         {
             string queryString = $"SELECT name FROM sqlite_master WHERE type = 'table'";
             return await database.QueryAsync<TableName>(queryString).ConfigureAwait(false);
-           
+
         }
 
         public async void DeleteData()
         {
-            List<TodoItem> items = await GetItemsNotDoneAsync();
-            foreach(TodoItem item in items)
+            List<Recipe> items = await GetItemsNotDoneAsync();
+            foreach (Recipe item in items)
             {
                 await DeleteItemAsync(item);
             }
         }
     }
-
 }
