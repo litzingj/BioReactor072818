@@ -9,13 +9,13 @@ using Xamarin.Forms.Xaml;
 using System.Diagnostics;
 using BioReactor072818.Models;
 using BioReactor072818.Data;
+using System.Collections.ObjectModel;
 
 namespace BioReactor072818
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecipeSelect : ContentPage
     {
-        public static RecipeDatabase recipeDatabase;
 
         public RecipeSelect()
         {
@@ -24,26 +24,11 @@ namespace BioReactor072818
             Debug.Print("Recipe Sel Initialized");
         }
 
-        /// <summary>
-        /// Recipes database
-        /// </summary>
-        public static RecipeDatabase Recipes
-        {
-            get
-            {
-                if (recipeDatabase == null)
-                {
-                    recipeDatabase = new RecipeDatabase(
-                        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Recipes.db3"));
-                }
-                return recipeDatabase;
-            }
-        }
 
         /// <summary>
         /// When page appears
         /// </summary>
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             Debug.Print("Beginning to show page");
             List<Chemical> Chems = new List<Chemical>
@@ -65,42 +50,24 @@ namespace BioReactor072818
                 ID = 0
                 
             };
+            r.WriteToFile();
+            r.Name = "NotherExample";
+            r.WriteToFile();
+            String[] files = Directory.GetFiles(App.EXTERN_PUBLIC_PATH, "*.recipe");
+            ObservableCollection<Recipe> StoredRecipes = new ObservableCollection<Recipe>();
 
-            try
+            for(int i = 0; i < files.Length; i++)
             {
-                await Recipes.SaveItemAsync(r);
+                Recipe rec = new Recipe(files[i]);
+               // rec.DEBUG_PRINT();
+                StoredRecipes.Add(rec);
             }
-            catch(Exception e)
-            {
-                Debug.Print(e.Source);
-                Debug.Print("Error saving new recipe");
-                Debug.Print(e.Message);
-                Debug.Print(e.StackTrace);
-            }
+           
+          
+            RecipeList.ItemsSource = StoredRecipes;
+
             base.OnAppearing();
-            ((App)App.Current).ResumeAtTodoId = -1;
-            /*
-             * 
-             * 
-             * 
-             * Left off here, needing to find out why this call is timing out
-             * It has something to do with changing the database type for some reason.
-             * Maybe the 
-             * 
-             * 
-             * 
-             * 
-             */
-            try
-            {
-                RecipeList.ItemsSource = await Recipes.GetItemsNotDoneAsync();//await Recipes.GetItemsAsync();
-            }
-            catch (Exception e)
-            {
-                Debug.Print(e.StackTrace);
-                Debug.Print("SOMETHING WENT WRONG SOURCING THE RECIPES");
-            }
-                Debug.Print("Recipes Sourced");
+          
         }
 
         async void OnRecipeSelected(object sender, SelectedItemChangedEventArgs e)
@@ -113,7 +80,7 @@ namespace BioReactor072818
                     //populate the recipe edit page
                     await Navigation.PushAsync(new RecipePage
                     {
-                        BindingContext = r
+                        BindingContext = e.SelectedItem as Recipe
                     });
                     
                 }

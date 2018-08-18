@@ -67,7 +67,7 @@ namespace BioReactor072818
         async void OnNextClicked(object sender, EventArgs e)
         {
             var rec = (Recipe)BindingContext;
-            await RecipeSelect.Recipes.SaveItemAsync(rec);
+            //await RecipeSelect.Recipes.SaveItemAsync(rec);
             //Go to next page (
         }
 
