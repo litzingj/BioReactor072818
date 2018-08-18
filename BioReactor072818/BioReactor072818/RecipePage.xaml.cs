@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Pages;
+using System.Diagnostics;
 using BioReactor072818.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -43,8 +44,10 @@ namespace BioReactor072818
         {
            
             Additive add = new Additive();
-            MessagingCenter.Subscribe<PopupPage>(this, "OK", (page) => {
-                var recipe = (Recipe)BindingContext;
+            var recipe = (Recipe)BindingContext;
+            MessagingCenter.Subscribe<PopupPage, string>(this, "OK", (page, arg) => {
+                Debug.Print(add.Name);
+                add.Name = arg;
                 recipe.Additives.Add(add);
             });
             
@@ -55,8 +58,9 @@ namespace BioReactor072818
         async void OnAddChemical(object sender, EventArgs e)
         {
             Chemical chem = new Chemical();
-            MessagingCenter.Subscribe<PopupPage>(this, "OK", (page) => {
+            MessagingCenter.Subscribe<PopupPage, string>(this, "OK", (page, args) => {
                 var recipe = (Recipe)BindingContext;
+                chem.Name = args;
                 recipe.Chemicals.Add(chem);
             });
 
@@ -67,8 +71,26 @@ namespace BioReactor072818
         async void OnNextClicked(object sender, EventArgs e)
         {
             var rec = (Recipe)BindingContext;
-            //await RecipeSelect.Recipes.SaveItemAsync(rec);
-            //Go to next page (
+
+            if(await DisplayAlert("Confirm Recipe", "Are you sure all this inforation is correct?", "Yes", "No"))
+            {
+                if(await DisplayAlert("Continue", "Clicking continue will start the batch. Would you like to proceed?", "Continue", "No"))
+                {
+                    rec.WriteToFile();
+                    /*
+                     * 
+                     * 
+                     *  START THE PROCESS 
+                     * 
+                     * 
+                     * 
+                     */
+
+                     await Navigation.PopToRootAsync();
+                }
+            }
+            
+
         }
 
         protected override void OnAppearing()

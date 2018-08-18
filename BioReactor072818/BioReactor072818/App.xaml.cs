@@ -27,7 +27,7 @@ namespace BioReactor072818
             Debug.Print(EXTERN_PUBLIC_PATH);
             //Navigation page allows you to use Navigation.PushAsync() and .PopAsync() to navigate
             //MainPage = new NavigationPage(new MainPage());
-            MainPage = new NavigationPage(new RecipeSelect());
+            MainPage = new NavigationPage(new MainPage());
 		}
 
         /// <summary>

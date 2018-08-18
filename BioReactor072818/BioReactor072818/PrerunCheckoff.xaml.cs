@@ -10,6 +10,7 @@ using System.Diagnostics;
 using SQLite;
 using BioReactor072818.Data;
 using BioReactor072818.Models;
+using System.Collections.ObjectModel;
 
 namespace BioReactor072818
 {
@@ -29,7 +30,7 @@ namespace BioReactor072818
             InitializeComponent();
             ClearPrevTasks();
 
-            //CreateTasks();
+            CreateTasks();
         }
 
         
@@ -104,6 +105,8 @@ namespace BioReactor072818
         {
             base.OnAppearing();
             ((App)App.Current).ResumeAtTodoId = -1;
+            List<TodoItem> items = await Database.GetItemsAsync();
+            ObservableCollection<TodoItem> it = new ObservableCollection<TodoItem>(items as List<TodoItem>);
             listView.ItemsSource = await Database.GetItemsAsync();
             CheckComplete();
         }

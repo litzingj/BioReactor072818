@@ -46,7 +46,7 @@ namespace BioReactor072818
 
         private async void OnOk()
         {
-            MessagingCenter.Send<PopupPage>(this, "OK");
+            MessagingCenter.Send<PopupPage, string>(this, "OK", ItemName.Text);
             await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAsync(true);
         }
 

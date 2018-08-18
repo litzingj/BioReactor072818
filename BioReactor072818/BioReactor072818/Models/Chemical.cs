@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace BioReactor072818.Models
 {
-	public class Chemical
+	public class Chemical : BindableObject
 	{
 		public Chemical ()
 		{

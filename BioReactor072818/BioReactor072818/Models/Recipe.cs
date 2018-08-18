@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace BioReactor072818.Models
 {
@@ -13,8 +14,8 @@ namespace BioReactor072818.Models
 		public Recipe ()
         {
 
-            Chemicals = new List<Chemical>();
-            Additives = new List<Additive>();
+            Chemicals = new ObservableCollection<Chemical>();
+            Additives = new ObservableCollection<Additive>();
            
         }
         public Recipe(string filename)
@@ -34,9 +35,9 @@ namespace BioReactor072818.Models
         public string Name { get; set; }
         public string Descript { get; set; }
         public string Strain { get; set; }
-        public List<Chemical> Chemicals { get; set; }
+        public ObservableCollection<Chemical> Chemicals { get; set; }
         public DateTime DateUsed { get; set; }
-        public List<Additive> Additives { get; set; }
+        public ObservableCollection<Additive> Additives { get; set; }
 
         public string[] ParseToFile()
         {
@@ -125,7 +126,7 @@ namespace BioReactor072818.Models
                     }
                     else if (parts[0].Equals("CHEMICALS"))
                     {
-                        rec.Chemicals = new List<Chemical>();
+                        rec.Chemicals = new ObservableCollection<Chemical>();
                         Int32 i;
                         Int32.TryParse(parts[1], out i);
                         for(int j = 0; j < i; j++)
@@ -138,7 +139,7 @@ namespace BioReactor072818.Models
                     }
                     else if (parts[0].Equals("ADDITIVES"))
                     {
-                        rec.Additives = new List<Additive>();
+                        rec.Additives = new ObservableCollection<Additive>();
                         Int32 i;
                         Int32.TryParse(parts[1], out i);
 

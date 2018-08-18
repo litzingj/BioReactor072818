@@ -31,11 +31,11 @@ namespace BioReactor072818
         protected override void OnAppearing()
         {
             Debug.Print("Beginning to show page");
-            List<Chemical> Chems = new List<Chemical>
+            ObservableCollection<Chemical> Chems = new ObservableCollection<Chemical>
             {
                 new Chemical{Name="Chemical"},
             };
-            List<Additive> Adds = new List<Additive>
+            ObservableCollection<Additive> Adds = new ObservableCollection<Additive>
             {
                 new Additive{Name="Additive"},
             };

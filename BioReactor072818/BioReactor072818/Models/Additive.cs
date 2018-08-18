@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace BioReactor072818.Models
 {
-	public class Additive
+	public class Additive : BindableObject
 	{
 		public Additive ()
 		{
