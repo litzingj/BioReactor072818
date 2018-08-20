@@ -18,15 +18,15 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    <ListView x:Name="RecipeList" Margin="20" ItemSelected="OnRecipeSelected">
+    <ListView x:Name="RecipeList" ItemSelected="OnRecipeSelected">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"/>
+                        <Label TextColor="Accent" FontSize="Large" Text="{Binding Name}" HorizontalOptions="Start"/>
                         <Label Text="{Binding Descript}" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
-                </ViewCell>
+                </ViewCell> 
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
