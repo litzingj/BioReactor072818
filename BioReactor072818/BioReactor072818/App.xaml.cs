@@ -22,12 +22,16 @@ namespace BioReactor072818
 
         public App ()
 		{
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTY1MDhAMzEzNjJlMzIyZTMwQWZVa2gwcmErSzhUcEZvcjF5cGRYZ2hmQmhEY0FYaCtsb1V3bmRraHpTST0=");
+
 			InitializeComponent();
             EXTERN_PUBLIC_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             Debug.Print(EXTERN_PUBLIC_PATH);
+            Vessel v = new Vessel();
             //Navigation page allows you to use Navigation.PushAsync() and .PopAsync() to navigate
             //MainPage = new NavigationPage(new MainPage());
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new DataPage(v));
+            //MainPage = new DataPage();
 		}
 
         /// <summary>
