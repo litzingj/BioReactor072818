@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace BioReactor072818
+namespace BioReactor072818.Models
 {
 	public class TodoItem
 	{

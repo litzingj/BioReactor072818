@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:pages="clr-namespace:BioReactor072818"
+            x:Class="BioReactor072818.DataPage">
+    <TabbedPage.Children>
+        <pages:CurrentConditionsPage Title="Conditions" x:Name="Curr_Cond"/>
+        <pages:DOGraph Title="Dissolved Oxygen" x:Name="DO_Graph"/>
+        <pages:PHGraph Title="pH" x:Name="ph_Graph"/>
+        <pages:TempGraph Title="Temperature" x:Name="Temp_Graph"/>
+    </TabbedPage.Children>
+</TabbedPage>
+    
+ 

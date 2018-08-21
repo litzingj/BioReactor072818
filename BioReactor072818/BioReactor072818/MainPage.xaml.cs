@@ -17,7 +17,7 @@ namespace BioReactor072818
 
         async void Container_One_Pressed(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PrerunCheckoff());
+            await Navigation.PushAsync(new PrerunCheckoff(1));
         }
 
         private void Container_Two_Pressed(object sender, EventArgs e)

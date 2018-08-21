@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BioReactor072818.Data;
+using BioReactor072818.Models;
 
 namespace BioReactor072818
 {
@@ -27,7 +29,7 @@ namespace BioReactor072818
             //Asynchronously pop this page off the top of the views stack
             await Navigation.PopAsync();
         }
-
+         
         async void OnSaveClicked(object sender, EventArgs e)
         {
             //Get the todoItem

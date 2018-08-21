@@ -13,7 +13,7 @@
         <ToolbarItem Text="+" Clicked="OnItemAdd">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="plus.png"/>
+                    <On Platform="Android" Value="baseline_add_white_24"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>

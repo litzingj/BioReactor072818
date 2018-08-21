@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BioReactor072818.CurrentConditionsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView Intent="Data">
+                <TableRoot>
+                    <TableSection Title="Temperature">
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Temperature, StringFormat='{0:F1}'}" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="&#186;C" HorizontalOptions="End" Margin="0,0,30,0"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="pH">
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding pH, StringFormat='{0:F1}'}" HorizontalOptions="StartAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Dissolved Oxygen">
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Temperature, StringFormat='{0:F1}'}" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="%" HorizontalOptions="End" Margin="0,0,30,0"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>    
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

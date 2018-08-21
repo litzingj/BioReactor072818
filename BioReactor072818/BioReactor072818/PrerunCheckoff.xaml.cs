@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using System.Diagnostics;
+using SQLite;
+using BioReactor072818.Data;
+using BioReactor072818.Models;
+using System.Collections.ObjectModel;
 
 namespace BioReactor072818
 {
@@ -16,18 +20,31 @@ namespace BioReactor072818
         /// <summary>
         /// Database to hold all of the items in the checklist
         /// </summary>
+        //TODO: Make a method that deletes all the tasks nonasync
         static TodoItemDatabase database;
 
-        public PrerunCheckoff()
+        public PrerunCheckoff(int vesselNum)
         {
+            Vessel = vesselNum;
+
             InitializeComponent();
-            createTasks();
+            ClearPrevTasks();
+
+            CreateTasks();
         }
+
+        
+
+        private void ClearPrevTasks()
+        {
+            Database.DeleteData();
+        }
+        
 
         /// <summary>
         /// A method to create all the things needed to checkoff
         /// </summary>
-        async void createTasks()
+        async void CreateTasks()
         {
         
             TodoItem td = new TodoItem
@@ -88,8 +105,14 @@ namespace BioReactor072818
         {
             base.OnAppearing();
             ((App)App.Current).ResumeAtTodoId = -1;
+            List<TodoItem> items = await Database.GetItemsAsync();
+            ObservableCollection<TodoItem> it = new ObservableCollection<TodoItem>(items as List<TodoItem>);
             listView.ItemsSource = await Database.GetItemsAsync();
+            CheckComplete();
         }
+
+
+        private int Vessel{get; set;}
 
         
         /// <summary>
@@ -102,7 +125,7 @@ namespace BioReactor072818
                 if(database == null)
                 {
                     database = new TodoItemDatabase(
-                        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TodoSQLite.db3"));
+                        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PrerunChecklist.db3"));
                 }
                 return database;
             }
@@ -138,6 +161,35 @@ namespace BioReactor072818
                 {
                     BindingContext = e.SelectedItem as TodoItem
                 });
+            }
+            
+        }
+
+        async void CheckComplete()
+        {
+            List<TodoItem> checklist = await Database.GetItemsAsync();
+            if (checklist.Count <= 0)
+                return;
+
+            foreach (TodoItem item in checklist)
+            {
+                if (!item.Done)
+                {
+                    return;
+                }
+            }
+            //Dialog to continue
+            string message = "Initial set up for vessel " + Vessel.ToString() + " complete. Would you like to continue to recipes?";
+            bool cont = await DisplayAlert("Check Complete", message, "Continue", "Cancel");
+            if (cont)
+            {
+
+                //recipe page
+                await Navigation.PushAsync(new RecipeSelect());
+            }
+            else
+            {
+                ClearPrevTasks();
             }
         }
     }
