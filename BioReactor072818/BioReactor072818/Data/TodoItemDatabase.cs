@@ -3,8 +3,9 @@ using SQLite;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using BioReactor072818.Models;
 
-namespace BioReactor072818
+namespace BioReactor072818.Data
 {
 	public class TodoItemDatabase
 	{

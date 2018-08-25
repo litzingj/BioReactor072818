@@ -49,7 +49,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Chemicals}" HorizontalOptions="StartAndExpand"/>
+                                <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"/>
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -60,7 +62,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Additives}" HorizontalOptions="StartAndExpand"/>
+                                <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"/>
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

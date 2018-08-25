@@ -6,10 +6,14 @@ using System.Text;
 using Xamarin.Forms;
 
 namespace BioReactor072818.Models
-{ 
-    public class TableName
-    {
-        public TableName() { }
-        public string name { get; set; }
-    }
+{
+	public class Additive : BindableObject
+	{
+		public Additive ()
+		{
+			
+		}
+
+        public string Name { get; set; }
+	}
 }
