@@ -15,7 +15,7 @@ namespace BioReactor072818
 		public DataPage (Vessel v)
 		{
             //Takes away Navbar at the top, but also takes away the large padding on top
-            NavigationPage.SetHasNavigationBar(this, false);
+           // NavigationPage.SetHasNavigationBar(this, false);
 			InitializeComponent ();
             DO_Graph.BindingContext = v;
             ph_Graph.BindingContext = v;

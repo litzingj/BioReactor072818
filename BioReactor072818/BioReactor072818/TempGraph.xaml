@@ -8,6 +8,9 @@
             <chart:SfChart.Title>
                 <chart:ChartTitle Text="Temperature Over Time"/>
             </chart:SfChart.Title>
+            <chart:SfChart.ChartBehaviors>
+                <chart:ChartZoomPanBehavior/>
+            </chart:SfChart.ChartBehaviors>
             <chart:SfChart.PrimaryAxis>
                 <chart:DateTimeAxis IntervalType="Minutes">
                     <chart:DateTimeAxis.Title>

@@ -9,7 +9,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height=".9*"/>
-                <RowDefinition Height=".4*"/>
+              <!--  <RowDefinition Height=".4*"/>-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".9*"/>
@@ -22,6 +22,7 @@
                     Grid.Row="0"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
+                    CornerRadius="5"
                     Image="BMES_VESSEL_blue_xsmall.png"
                     Pressed="Container_One_Pressed">
             </Button>
@@ -32,8 +33,10 @@
                 Grid.Column="1"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
+                CornerRadius="5"
                 Image="BMES_VESSEL_red_xsmall.png"
                 Pressed="Container_Two_Pressed">
+             
             </Button>
             <Button
                 x:Name="GreenContainer"
@@ -43,9 +46,10 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Image="BMES_VESSEL_green_xsmall.png"
+                CornerRadius="5"
                 Pressed="Container_Three_Pressed">
             </Button>
-            <Button x:Name="AllVessels"
+         <!--   <Button x:Name="AllVessels"
                     BackgroundColor="Accent"
                     Grid.Row="1"
                     Grid.Column="0"
@@ -55,8 +59,8 @@
                     HeightRequest="60"
                     Pressed="All_Vessels"
                     Text="Select All">
-                
-            </Button>
+       
+            </Button>         -->
         </Grid>
 
     </StackLayout>
