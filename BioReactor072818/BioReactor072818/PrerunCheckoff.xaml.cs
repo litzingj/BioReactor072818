@@ -28,18 +28,71 @@ namespace BioReactor072818
             Vessel = currVessel;
             database = new ObservableCollection<TodoItem>();
             InitializeComponent();
-            ClearPrevTasks();
-
+            //CreateTasksDebug();
             CreateTasks();
+            CheckComplete();
+
         }
 
-        
 
-        private void ClearPrevTasks()
+        private void CreateTasksDebug()
         {
-      
+            TodoItem td = new TodoItem
+            {
+                Name = "Check/Secure Probes/Ports",
+                Notes = "",
+                Done = true,
+            };
+            if (!database.Contains(td))
+                database.Add(td);
+            td = new TodoItem
+            {
+                Name = "Check Sensor Calibrations",
+                Notes = "",
+                Done = true,
+            };
+            if (!database.Contains(td))
+                database.Add(td);
+
+            td = new TodoItem
+            {
+                Name = "Prepare Media",
+                Notes = "",
+                Done = true,
+            };
+
+            if (!database.Contains(td))
+                database.Add(td);
+            td = new TodoItem
+            {
+                Name = "Set Up Initial Conditions",
+                Notes = "",
+                Done = true,
+            };
+            if (!database.Contains(td))
+                database.Add(td);
+            td = new TodoItem
+            {
+                Name = "Prepare Additives",
+                Notes = "",
+                Done = true,
+            };
+
+            if (!database.Contains(td))
+                database.Add(td);
+            td = new TodoItem
+            {
+                Name = "Check and Prime Gas Lines",
+                Notes = "",
+                Done = true,
+            };
+
+            if (!database.Contains(td))
+                database.Add(td);
         }
-        
+
+
+
 
         /// <summary>
         /// A method to create all the things needed to checkoff
@@ -182,7 +235,10 @@ namespace BioReactor072818
             }
             else
             {
-                ClearPrevTasks();
+                foreach(TodoItem i in database)
+                {
+                    i.Done = false;
+                }
             }
         }
     }

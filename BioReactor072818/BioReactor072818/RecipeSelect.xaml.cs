@@ -22,15 +22,12 @@ namespace BioReactor072818
         {
             ves = v;
             InitializeComponent();
+            CreateExampleRec();
         }
 
 
-        /// <summary>
-        /// When page appears
-        /// </summary>
-        protected override void OnAppearing()
+        void CreateExampleRec()
         {
-            Debug.Print("Beginning to show page");
             ObservableCollection<Chemical> Chems = new ObservableCollection<Chemical>
             {
                 new Chemical{Name="Chemical"},
@@ -39,6 +36,9 @@ namespace BioReactor072818
             {
                 new Additive{Name="Additive"},
             };
+            DateTime date = DateTime.Today;
+            TimeSpan time = new TimeSpan(5, 2, 8);
+            date = date + time;
             Recipe r = new Recipe
             {
                 Name = "Example",
@@ -46,13 +46,22 @@ namespace BioReactor072818
                 Additives = Adds,
                 Chemicals = Chems,
                 Strain = "Strain",
-                DateUsed = DateTime.Today,
+                DateUsed = date,
+                TimeUsed = time,
                 ID = 0
-                
+
             };
             r.WriteToFile();
-            r.Name = "NotherExample";
-            r.WriteToFile();
+        }
+
+        /// <summary>
+        /// When page appears
+        /// </summary>
+        protected override void OnAppearing()
+        {
+            Debug.Print("Beginning to show page");
+
+            CreateExampleRec();
             String[] files = Directory.GetFiles(App.EXTERN_PUBLIC_PATH, "*.recipe");
             ObservableCollection<Recipe> StoredRecipes = new ObservableCollection<Recipe>();
 
