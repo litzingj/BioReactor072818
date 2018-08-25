@@ -33,6 +33,19 @@ namespace BioReactor072818
             else
                 await Navigation.PushAsync(new DataPage(vessels[0]));
         }
+        
+        async void Container_One_Data(object sender, EventArgs e)
+        {
+            if (!vessels[0].running)
+                await DisplayAlert("No Recipe", "Please start a recipe before you observe data", "Ok");
+            else
+                await Navigation.PushAsync(new DataPage(vessels[0]));
+        }
+
+        void Container_One_Stop()
+        {
+
+        }
 
         /// <summary>
         /// If container two is pressed, check to see if the corresponding vessel is already running.
@@ -49,6 +62,18 @@ namespace BioReactor072818
             
         }
 
+        async void Container_Two_Data()
+        {
+            if (!vessels[1].running)
+                await DisplayAlert("No Recipe", "Please start a recipe before you observe data", "Ok");
+            else
+                await Navigation.PushAsync(new DataPage(vessels[1]));
+        }
+
+        void Container_Two_Stop()
+        {
+
+        }
 
         /// <summary>
         /// If container three is pressed, check to see if the corresponding vessel is already running.
@@ -64,6 +89,27 @@ namespace BioReactor072818
                 await Navigation.PushAsync(new DataPage(vessels[2]));
 
         }
+
+        async void Container_Three_Data()
+        {
+            if (!vessels[2].running)
+                await DisplayAlert("No Recipe", "Please start a recipe before you observe data", "Ok");
+            else
+                await Navigation.PushAsync(new DataPage(vessels[2]));
+        }
+
+        void Container_Three_Stop()
+        {
+
+        }
+
+       
+
+
+
+
+
+
 
         private void All_Vessels(object sender, EventArgs e)
         {

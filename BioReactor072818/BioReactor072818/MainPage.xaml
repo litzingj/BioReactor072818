@@ -3,53 +3,153 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BioReactor072818"
              xmlns:ctrls="clr-namespace:BioReactor072818.Controls"
+             xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
              x:Class="BioReactor072818.MainPage">
 
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <!--<StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">-->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height=".9*"/>
-              <!--  <RowDefinition Height=".4*"/>-->
+                <RowDefinition Height=".9*"/>
+                <RowDefinition Height=".9*"/>
+                <RowDefinition Height=".9*"/>
+                <RowDefinition Height=".9*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".9*"/>
                 <ColumnDefinition Width=".9*"/>
                 <ColumnDefinition Width=".9*"/>
             </Grid.ColumnDefinitions>
+
+
+            <Image Source="BMES_VESSEL_blue.png"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   Grid.RowSpan="4"/>
+            <Label Text="Vessel 1"
+                   FontSize="Large"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="EndAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="0"/>
             <Button x:Name="BlueContainer"
-                    BackgroundColor="White"
+                    BackgroundColor="DeepSkyBlue"
                     Grid.Column="0"
-                    Grid.Row="0"
+                    Grid.Row="2"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    CornerRadius="5"
-                    Image="BMES_VESSEL_blue_xsmall.png"
-                    Pressed="Container_One_Pressed">
-            </Button>
+                    CornerRadius="10"
+                    Text="Start Recipe"
+                    Pressed="Container_One_Pressed"/>
+            <Button x:Name="vessel1data"
+                    Text="Conditions"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Pressed="Container_One_Data"/>
+            <Button x:Name="vessel1stop"
+                    Text="STOP"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    FontSize="Large"
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    BackgroundColor="Red"
+                    Pressed="Container_One_Stop"/>
+
+            <Image Source="BMES_VESSEL_red.png"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   Grid.RowSpan="4"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"/>
+            
+            <Label Text="Vessel 2"
+                   FontSize="Large"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="EndAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="0"/>
             <Button
                 x:Name="RedContainer"
-                BackgroundColor="White"
-                Grid.Row="0"
+                BackgroundColor="OrangeRed"
+                Grid.Row="2"
                 Grid.Column="1"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
-                CornerRadius="5"
-                Image="BMES_VESSEL_red_xsmall.png"
-                Pressed="Container_Two_Pressed">
-             
-            </Button>
+                Text="Start Recipe"
+                CornerRadius="10"
+                Pressed="Container_Two_Pressed"/>
+
+            <Button x:Name="vessel2data"
+                    Text="Conditions"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Pressed="Container_Two_Data"/>
+            <Button x:Name="vessel2stop"
+                    Text="STOP"
+                    FontSize="Large"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    BackgroundColor="Red"
+                    Pressed="Container_Two_Stop"/>
+
+            <Label Text="Vessel 3"
+                   FontSize="Large"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="EndAndExpand"
+                   Grid.Column="2"
+                   Grid.Row="0"/>
+
+
+            <Image Source="BMES_VESSEL_green.png"
+                   Grid.Column="2"
+                   Grid.Row="1"
+                   Grid.RowSpan="4"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"/>
             <Button
                 x:Name="GreenContainer"
-                BackgroundColor="White"
-                Grid.Row="0"
+                BackgroundColor="LawnGreen"
+                Grid.Row="2"
                 Grid.Column="2"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
-                Image="BMES_VESSEL_green_xsmall.png"
-                CornerRadius="5"
-                Pressed="Container_Three_Pressed">
-            </Button>
-         <!--   <Button x:Name="AllVessels"
+                CornerRadius="10"
+                Text="Start Recipe"
+                Pressed="Container_Three_Pressed"/>
+            
+            <Button x:Name="vessel3data"
+                    Text="Conditions"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    Pressed="Containter_Three_Data"/>
+            
+            <Button x:Name="vessel3stop"
+                    Text="STOP"
+                    FontSize="Large"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Column="2"
+                    Grid.Row="4"
+                    BackgroundColor="Red"
+                    Pressed="Container_Three_Stop"/>
+            <!--   <Button x:Name="AllVessels"
                     BackgroundColor="Accent"
                     Grid.Row="1"
                     Grid.Column="0"
@@ -63,6 +163,6 @@
             </Button>         -->
         </Grid>
 
-    </StackLayout>
+    <!--</StackLayout>-->
 
 </ContentPage>
