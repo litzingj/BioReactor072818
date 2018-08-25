@@ -14,7 +14,7 @@ namespace BioReactor072818.Models
             pH_Data = new ObservableCollection<ChartDataPoint>();
             DO2_Data = new ObservableCollection<ChartDataPoint>();
             Temp_Data = new ObservableCollection<ChartDataPoint>();
-            populate_demo_data();
+            //populate_demo_data();
         }
 
 
@@ -36,6 +36,9 @@ namespace BioReactor072818.Models
         }
 
 
+        public string ID { get; set; }
+        public bool running { get; set; }
+        public Recipe currentRecipe { get; set; }
         public float pH { get; set; }
         public float DissolvedO2 { get; set; }
         public float Temperature { get; set; }

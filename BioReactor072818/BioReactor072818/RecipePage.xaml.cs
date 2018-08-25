@@ -17,11 +17,14 @@ namespace BioReactor072818
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RecipePage : ContentPage
 	{
+        public Vessel vessel;
         
-		public RecipePage ()
-		{
-			InitializeComponent ();
-		}
+
+        public RecipePage()
+        {
+            InitializeComponent();
+        }
+		
 
         void OnDateSelected (object sender, DateChangedEventArgs e)
         {
@@ -85,7 +88,8 @@ namespace BioReactor072818
                      * 
                      * 
                      */
-
+                    vessel.currentRecipe = rec;
+                    vessel.running = true;
                      await Navigation.PopToRootAsync();
                 }
             }

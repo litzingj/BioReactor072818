@@ -9,23 +9,23 @@
                     <TableSection Title="Temperature">
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Temperature, StringFormat='{0:F1}'}" HorizontalOptions="StartAndExpand"/>
-                                <Label Text="&#186;C" HorizontalOptions="End" Margin="0,0,30,0"/>
+                                <Label Text="{Binding Temperature, StringFormat='{0:F1} &#186;C'}" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+                                <!--<Label Text="&#186;C" HorizontalOptions="End" Margin="0,0,30,0"/>-->
                             </StackLayout>
                         </ViewCell>
                     </TableSection>
                     <TableSection Title="pH">
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding pH, StringFormat='{0:F1}'}" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding pH, StringFormat='{0:F1}'}" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>
                     <TableSection Title="Dissolved Oxygen">
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Temperature, StringFormat='{0:F1}'}" HorizontalOptions="StartAndExpand"/>
-                                <Label Text="%" HorizontalOptions="End" Margin="0,0,30,0"/>
+                                <Label Text="{Binding Temperature, StringFormat='{0:F1} %'}" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+                                <!--<Label Text="%" HorizontalOptions="End" Margin="0,0,30,0"/>-->
                             </StackLayout>
                         </ViewCell>
                     </TableSection>

@@ -21,12 +21,12 @@ namespace BioReactor072818
         /// Database to hold all of the items in the checklist
         /// </summary>
         //TODO: Make a method that deletes all the tasks nonasync
-        static TodoItemDatabase database;
+        public static ObservableCollection<TodoItem> database { get; set; }
 
-        public PrerunCheckoff(int vesselNum)
+        public PrerunCheckoff(Vessel currVessel)
         {
-            Vessel = vesselNum;
-
+            Vessel = currVessel;
+            database = new ObservableCollection<TodoItem>();
             InitializeComponent();
             ClearPrevTasks();
 
@@ -37,14 +37,14 @@ namespace BioReactor072818
 
         private void ClearPrevTasks()
         {
-            Database.DeleteData();
+      
         }
         
 
         /// <summary>
         /// A method to create all the things needed to checkoff
         /// </summary>
-        async void CreateTasks()
+        private void CreateTasks()
         {
 
             TodoItem td = new TodoItem
@@ -53,42 +53,52 @@ namespace BioReactor072818
                 Notes = "",
                 Done = false,
             };
-            await Database.SaveItemAsync(td);
+            if(!database.Contains(td))
+                database.Add(td);
             td = new TodoItem
             {
                 Name = "Check Sensor Calibrations",
                 Notes = "",
                 Done = false,
             };
-            await Database.SaveItemAsync(td);
+            if (!database.Contains(td))
+                database.Add(td);
+
             td = new TodoItem
             {
                 Name = "Prepare Media",
                 Notes = "",
                 Done = false,
             };
-            await Database.SaveItemAsync(td);
+
+            if (!database.Contains(td))
+                database.Add(td);
             td = new TodoItem
             {
                 Name = "Set Up Initial Conditions",
                 Notes = "",
                 Done = false,
             };
-            await Database.SaveItemAsync(td);
+            if (!database.Contains(td))
+                database.Add(td);
             td = new TodoItem
             {
                 Name = "Prepare Additives",
                 Notes = "",
                 Done = false,
             };
-            await Database.SaveItemAsync(td);
+
+            if (!database.Contains(td))
+                database.Add(td);
             td = new TodoItem
             {
                 Name = "Check and Prime Gas Lines",
                 Notes = "",
                 Done = false,
             };
-            await Database.SaveItemAsync(td);
+
+            if (!database.Contains(td))
+                database.Add(td);
         }
 
 
@@ -107,35 +117,16 @@ namespace BioReactor072818
             await Navigation.PopToRootAsync();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-            ((App)App.Current).ResumeAtTodoId = -1;
-            List<TodoItem> items = await Database.GetItemsAsync();
-            ObservableCollection<TodoItem> it = new ObservableCollection<TodoItem>(items as List<TodoItem>);
-            listView.ItemsSource = await Database.GetItemsAsync();
+            listView.ItemsSource = database;
             CheckComplete();
         }
 
 
-        private int Vessel{get; set;}
+        private Vessel Vessel{get; set;}
 
-        
-        /// <summary>
-        /// Create a database if there isn't already one, else return that one
-        /// </summary>
-        public static TodoItemDatabase Database
-        {
-            get
-            {
-                if(database == null)
-                {
-                    database = new TodoItemDatabase(
-                        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PrerunChecklist.db3"));
-                }
-                return database;
-            }
-        }
 
         /// <summary>
         /// This adds a new item. If the plus is selected, a new item is created
@@ -163,21 +154,23 @@ namespace BioReactor072818
             if(e.SelectedItem != null)
             {
                 
+                //For editable and viewable descriptions
                 await Navigation.PushAsync(new TodoItemPage
                 {
                     BindingContext = e.SelectedItem as TodoItem
                 });
             }
-            
+            listView.ItemsSource = database;
+
         }
 
         async void CheckComplete()
         {
-            List<TodoItem> checklist = await Database.GetItemsAsync();
-            if (checklist.Count <= 0)
+            
+            if (database.Count <= 0)
                 return;
 
-            foreach (TodoItem item in checklist)
+            foreach (TodoItem item in database)
             {
                 if (!item.Done)
                 {
@@ -185,13 +178,13 @@ namespace BioReactor072818
                 }
             }
             //Dialog to continue
-            string message = "Initial set up for vessel " + Vessel.ToString() + " complete. Would you like to continue to recipes?";
+            string message = "Initial set up for vessel " + Vessel.ID + " complete. Would you like to continue to recipes?";
             bool cont = await DisplayAlert("Check Complete", message, "Continue", "Cancel");
             if (cont)
             {
 
                 //recipe page
-                await Navigation.PushAsync(new RecipeSelect());
+                await Navigation.PushAsync(new RecipeSelect(Vessel));
             }
             else
             {

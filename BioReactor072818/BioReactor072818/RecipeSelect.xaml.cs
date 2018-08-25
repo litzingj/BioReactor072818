@@ -17,11 +17,11 @@ namespace BioReactor072818
     public partial class RecipeSelect : ContentPage
     {
 
-        public RecipeSelect()
+        private Vessel ves;
+        public RecipeSelect(Vessel v)
         {
-            Debug.Print("Recipe Selection");
+            ves = v;
             InitializeComponent();
-            Debug.Print("Recipe Sel Initialized");
         }
 
 
@@ -80,7 +80,8 @@ namespace BioReactor072818
                     //populate the recipe edit page
                     await Navigation.PushAsync(new RecipePage
                     {
-                        BindingContext = e.SelectedItem as Recipe
+                        BindingContext = e.SelectedItem as Recipe,
+                        vessel = ves
                     });
                     
                 }
@@ -95,11 +96,12 @@ namespace BioReactor072818
         {
             if(await DisplayAlert("New Recipe", "Are you sure you want to create a new recipe?", "Yes", "Cancel"))
             {
-                
+
                 //go to add recipe page
                 await Navigation.PushAsync(new RecipePage
                 {
-                    BindingContext = new Recipe()
+                    BindingContext = new Recipe(),
+                    vessel = ves
                 });
             }
             else
