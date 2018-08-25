@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="BioReactor072818.DOGraph">
+    <ContentPage.Content>
+        <chart:SfChart>
+            <chart:SfChart.Title>
+                <chart:ChartTitle Text="Dissolved Oxygen Over Time"/>
+
+            </chart:SfChart.Title>
+            <chart:SfChart.ChartBehaviors>
+                <chart:ChartZoomPanBehavior/>
+            </chart:SfChart.ChartBehaviors>
+            <chart:SfChart.PrimaryAxis>
+                <chart:DateTimeAxis IntervalType="Minutes">
+                    <chart:DateTimeAxis.Title>
+                        <chart:ChartAxisTitle Text="Time"/>
+                    </chart:DateTimeAxis.Title>
+                </chart:DateTimeAxis>
+            </chart:SfChart.PrimaryAxis>
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis Minimum="0" Maximum="100">
+                    <chart:NumericalAxis.Title>
+                        <chart:ChartAxisTitle Text="Dissolved Oxygen"/>
+                    </chart:NumericalAxis.Title>
+                </chart:NumericalAxis>
+            </chart:SfChart.SecondaryAxis>
+            <chart:FastLineSeries ItemsSource="{Binding DO2_Data}"/>
+        </chart:SfChart>
+    </ContentPage.Content>
+</ContentPage>
