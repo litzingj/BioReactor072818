@@ -55,11 +55,15 @@ namespace BioReactor072818
             });
 
             //Debug.Print(EXTERN_PUBLIC_PATH);
-            
+
             //Navigation page allows you to use Navigation.PushAsync() and .PopAsync() to navigate
             MainPage = new NavigationPage(new MainPage(vessels));
             //MainPage = new NavigationPage(new DataPage(vessels[1]));
-
+           /* MainPage = new NavigationPage(new RecipePage
+            {
+                BindingContext = new Recipe(),
+                vessel = vessels[0]
+            });*/
 		}
 
         /// <summary>
@@ -88,7 +92,7 @@ namespace BioReactor072818
         /// <param name="vessel"></param>
         protected void UpdateVessel(Vessel vessel)
         {
-            //Debug.Print("Updating Vessel");
+            
         }
 	}
 }

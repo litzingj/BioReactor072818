@@ -34,10 +34,11 @@
                         <ColumnDefinition Width="0.7*"/>
                         <ColumnDefinition Width="0.7*"/>
                     </Grid.ColumnDefinitions>
-                    <DatePicker Date="{x:Static sys:DateTime.Today}" 
+                    <DatePicker Date="{Binding DateUsed, Mode=TwoWay}"
+                            MinimumDate="Jan 1 2000"
                             DateSelected="OnDateSelected"
                             Grid.Column="0"/>
-                    <TimePicker Time="{x:Static sys:DateTime.Now}"
+                    <TimePicker Time="{Binding TimeUsed, Mode=TwoWay}"
                                 Grid.Column="1"/>
                 </Grid>
                 <Label Text="Details" HorizontalOptions="StartAndExpand"

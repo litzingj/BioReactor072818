@@ -7,7 +7,7 @@
         
         <chart:SfChart>
             <chart:SfChart.Title>
-                <chart:ChartTitle Text="pH Over Time"/>
+                <chart:ChartTitle Text="pH vs Time"/>
             </chart:SfChart.Title>
             <chart:SfChart.ChartBehaviors>
                 <chart:ChartZoomPanBehavior/>

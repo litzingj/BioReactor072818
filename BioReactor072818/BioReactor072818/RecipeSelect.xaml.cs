@@ -22,15 +22,12 @@ namespace BioReactor072818
         {
             ves = v;
             InitializeComponent();
+            CreateExampleRec();
         }
 
 
-        /// <summary>
-        /// When page appears
-        /// </summary>
-        protected override void OnAppearing()
+        void CreateExampleRec()
         {
-            Debug.Print("Beginning to show page");
             ObservableCollection<Chemical> Chems = new ObservableCollection<Chemical>
             {
                 new Chemical{Name="Chemical"},
@@ -39,6 +36,9 @@ namespace BioReactor072818
             {
                 new Additive{Name="Additive"},
             };
+            DateTime date = DateTime.Today;
+            TimeSpan time = new TimeSpan(5, 2, 8);
+            date = date + time;
             Recipe r = new Recipe
             {
                 Name = "Example",
@@ -46,13 +46,22 @@ namespace BioReactor072818
                 Additives = Adds,
                 Chemicals = Chems,
                 Strain = "Strain",
-                DateUsed = DateTime.Today,
+                DateUsed = date,
+                TimeUsed = time,
                 ID = 0
-                
+
             };
             r.WriteToFile();
-            r.Name = "NotherExample";
-            r.WriteToFile();
+        }
+
+        /// <summary>
+        /// When page appears
+        /// </summary>
+        protected override void OnAppearing()
+        {
+            Debug.Print("Beginning to show page");
+
+            CreateExampleRec();
             String[] files = Directory.GetFiles(App.EXTERN_PUBLIC_PATH, "*.recipe");
             ObservableCollection<Recipe> StoredRecipes = new ObservableCollection<Recipe>();
 
@@ -75,7 +84,7 @@ namespace BioReactor072818
             if (e.SelectedItem != null)
             {
                 Recipe r = e.SelectedItem as Recipe;
-                if (await DisplayAlert("Confirm Recipe", "Would you like to open " + r.Name + "?", "Yes", "No"))
+                if (await DisplayAlert("", "Would you like to open " + r.Name + "?", "Yes", "No"))
                 {
                     //populate the recipe edit page
                     await Navigation.PushAsync(new RecipePage
@@ -94,7 +103,7 @@ namespace BioReactor072818
 
         async void OnRecipeAdd(object sender, EventArgs e)
         {
-            if(await DisplayAlert("New Recipe", "Are you sure you want to create a new recipe?", "Yes", "Cancel"))
+            if(await DisplayAlert("", "Are you sure you want to create a new recipe?", "Yes", "Cancel"))
             {
 
                 //go to add recipe page

@@ -6,17 +6,21 @@ using System.Text;
 using System.Diagnostics;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace BioReactor072818.Models
 {
 	public class Recipe : BindableObject
 	{
+        CultureInfo provider = CultureInfo.InvariantCulture;
 		public Recipe ()
         {
 
             Chemicals = new ObservableCollection<Chemical>();
             Additives = new ObservableCollection<Additive>();
-           
+            DateUsed = DateTime.Now;
+            TimeUsed = new TimeSpan(8, 30, 0);
+            DateUsed = DateUsed + TimeUsed;
         }
         public Recipe(string filename)
         {
@@ -31,24 +35,28 @@ namespace BioReactor072818.Models
             this.Strain = r.Strain;
         }
 
+        
         public int ID { get; set; }
         public string Name { get; set; }
         public string Descript { get; set; }
         public string Strain { get; set; }
         public ObservableCollection<Chemical> Chemicals { get; set; }
         public DateTime DateUsed { get; set; }
+        public TimeSpan TimeUsed { get; set; }
         public ObservableCollection<Additive> Additives { get; set; }
 
         public string[] ParseToFile()
         {
+            DateUsed = DateUsed + TimeUsed;
             string[] lines = new string[7+Chemicals.Count+Additives.Count];
-            string id = "ID:" + ID.ToString();
-            string name = "NAME:" + Name;
-            string descript = "DESCRIPT:" + Descript;
-            string strain = "STRAIN:" + Strain;
-            string date = "DATE:" + DateUsed.ToString("d");
-            string chemsHeader = "CHEMICALS:"+Chemicals.Count.ToString();
-            string addsHeader = "ADDITIVES:"+Additives.Count.ToString();
+            string id = "ID[" + ID.ToString();
+            string name = "NAME[" + Name;
+            string descript = "DESCRIPT[" + Descript;
+            string strain = "STRAIN[" + Strain;
+            string date = "DATE[" + DateUsed.ToString();
+            Debug.Print(date);
+            string chemsHeader = "CHEMICALS["+Chemicals.Count.ToString();
+            string addsHeader = "ADDITIVES["+Additives.Count.ToString("g");
             lines[0] = id;
             lines[1] = name;
             lines[2] = descript;
@@ -100,10 +108,11 @@ namespace BioReactor072818.Models
             {
                 while((line = file.ReadLine()) != null)
                 {
-                    string[] parts = line.Split(':');
+                    string[] parts = line.Split('[');
                     
                     if(parts[0].Equals("NAME"))
                     {
+                        Debug.Print(parts[1]);
                         rec.Name = parts[1];
                     }
                     else if (parts[0].Equals("ID"))
@@ -122,7 +131,10 @@ namespace BioReactor072818.Models
                     }
                     else if (parts[0].Equals("DATE"))
                     {
-                        rec.DateUsed = DateTime.Parse(parts[1]);
+                        Debug.Print(parts[1]);
+                        rec.DateUsed = DateTime.ParseExact(parts[1],"M/d/yyyy h:m:s tt",provider);
+                        rec.TimeUsed = DateTime.ParseExact(parts[1], "M/d/yyyy h:m:s tt", provider).TimeOfDay;
+
                     }
                     else if (parts[0].Equals("CHEMICALS"))
                     {
