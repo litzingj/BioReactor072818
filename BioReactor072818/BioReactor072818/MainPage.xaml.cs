@@ -37,7 +37,7 @@ namespace BioReactor072818
         async void Container_One_Data(object sender, EventArgs e)
         {
             if (!vessels[0].running)
-                await DisplayAlert("No Recipe", "Please start a recipe before you observe data", "Ok");
+                await DisplayAlert("", "Please start a recipe before you observe data", "Ok");
             else
                 await Navigation.PushAsync(new DataPage(vessels[0]));
         }
@@ -65,7 +65,7 @@ namespace BioReactor072818
         async void Container_Two_Data()
         {
             if (!vessels[1].running)
-                await DisplayAlert("No Recipe", "Please start a recipe before you observe data", "Ok");
+                await DisplayAlert("", "Please start a recipe before you observe data", "Ok");
             else
                 await Navigation.PushAsync(new DataPage(vessels[1]));
         }
@@ -93,7 +93,7 @@ namespace BioReactor072818
         async void Containter_Three_Data()
         {
             if (!vessels[2].running)
-                await DisplayAlert("No Recipe", "Please start a recipe before you observe data", "Ok");
+                await DisplayAlert("", "Please start a recipe before you observe data", "Ok");
             else
                 await Navigation.PushAsync(new DataPage(vessels[2]));
         }

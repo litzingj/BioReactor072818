@@ -84,7 +84,7 @@ namespace BioReactor072818
             if (e.SelectedItem != null)
             {
                 Recipe r = e.SelectedItem as Recipe;
-                if (await DisplayAlert("Confirm Recipe", "Would you like to open " + r.Name + "?", "Yes", "No"))
+                if (await DisplayAlert("", "Would you like to open " + r.Name + "?", "Yes", "No"))
                 {
                     //populate the recipe edit page
                     await Navigation.PushAsync(new RecipePage
@@ -103,7 +103,7 @@ namespace BioReactor072818
 
         async void OnRecipeAdd(object sender, EventArgs e)
         {
-            if(await DisplayAlert("New Recipe", "Are you sure you want to create a new recipe?", "Yes", "Cancel"))
+            if(await DisplayAlert("", "Are you sure you want to create a new recipe?", "Yes", "Cancel"))
             {
 
                 //go to add recipe page

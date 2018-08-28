@@ -75,9 +75,9 @@ namespace BioReactor072818
         {
             var rec = (Recipe)BindingContext;
 
-            if(await DisplayAlert("Confirm Recipe", "Are you sure all this inforation is correct?", "Yes", "No"))
+            if(await DisplayAlert("", "Are you sure all this inforation is correct?", "Yes", "No"))
             {
-                if(await DisplayAlert("Continue", "Clicking continue will start the batch. Would you like to proceed?", "Continue", "No"))
+                if(await DisplayAlert("", "Clicking continue will start the batch. Would you like to proceed?", "Continue", "No"))
                 {
                     rec.WriteToFile();
                     /*

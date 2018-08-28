@@ -226,7 +226,7 @@ namespace BioReactor072818
             }
             //Dialog to continue
             string message = "Initial set up for vessel " + Vessel.ID + " complete. Would you like to continue to recipes?";
-            bool cont = await DisplayAlert("Check Complete", message, "Continue", "Cancel");
+            bool cont = await DisplayAlert("", message, "Continue", "Cancel");
             if (cont)
             {
 
