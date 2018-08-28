@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <chart:SfChart>
             <chart:SfChart.Title>
-                <chart:ChartTitle Text="Dissolved Oxygen Over Time"/>
+                <chart:ChartTitle Text="Dissolved Oxygen vs Time"/>
 
             </chart:SfChart.Title>
             <chart:SfChart.ChartBehaviors>

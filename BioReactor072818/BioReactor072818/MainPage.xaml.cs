@@ -90,7 +90,7 @@ namespace BioReactor072818
 
         }
 
-        async void Container_Three_Data()
+        async void Containter_Three_Data()
         {
             if (!vessels[2].running)
                 await DisplayAlert("No Recipe", "Please start a recipe before you observe data", "Ok");
