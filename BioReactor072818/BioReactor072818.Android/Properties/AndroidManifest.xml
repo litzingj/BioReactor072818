@@ -3,4 +3,6 @@
 	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
 	<application android:label="BioReactor072818.Android"></application>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <!--This is just to get it building on emulator-->
+  <uses-library android:name="com.google.android.things" android:required="false"/>
 </manifest>
